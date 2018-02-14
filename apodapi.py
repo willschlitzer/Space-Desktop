@@ -1,4 +1,5 @@
-'''Displays the Astronomy Picture of the Day'''
+'''Queries the APOD API for the Astronomy Picture
+of the Day and displays it'''
 import apodapi_config
 import requests
 import json
