@@ -6,9 +6,9 @@ import requests
 import urllib.request
 from PIL import Image
 
-import apodapi_config
+import api_config
 
-apiurl = 'https://api.nasa.gov/planetary/apod?api_key=' + apodapi_config.apikey
+apiurl = 'https://api.nasa.gov/planetary/apod?api_key=' + api_config.nasaapikey
 apoddata = requests.get(apiurl).json()
 imgurl = apoddata['hdurl']
 urllib.request.urlretrieve(imgurl, 'apod.jpg')
