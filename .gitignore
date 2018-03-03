@@ -1,5 +1,6 @@
 blankshell.py
 api_config.py
 *.pyc
-__pycache__/apodapi_config.cpython-35.pyc
+mastpic.jpg
 apod.jpg
+__pycache__/

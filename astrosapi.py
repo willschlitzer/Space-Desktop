@@ -1,15 +1,12 @@
 '''Queries the People in Space API for the current people in space'''
 
 import requests
-import json
 
-apiurl = 'http://api.open-notify.org/astros.json'
-astrosdata = requests.get(apiurl).json()
-astrosnumber = astrosdata['number']
-print(astrosnumber)
-astronauts = astrosdata['people']
+api_url = 'http://api.open-notify.org/astros.json'
+astros_data = requests.get(api_url).json()
+astros_number = astros_data['number']
+print(astros_number)
+astronauts = astros_data['people']
 print('Astronaut\t\tCraft')
 for i in astronauts:
-    print(i['name'],'\t\t',i['craft'])
-
-
+    print(i['name'], '\t\t', i['craft'])

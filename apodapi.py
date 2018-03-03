@@ -15,6 +15,7 @@ def get_apod():
     urllib.request.urlretrieve(imgurl, 'apod.jpg')
     image = Image.open('apod.jpg')
     image.show()
+    return apoddata
 
 if __name__ == '__main__':
     get_apod()
