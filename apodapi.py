@@ -1,5 +1,5 @@
-'''Queries the APOD API for the Astronomy Picture
-of the Day and displays it'''
+"""Queries the APOD API for the Astronomy Picture
+of the Day, saves it, and displays it"""
 
 import requests
 
@@ -9,12 +9,17 @@ from PIL import Image
 import api_config
 
 def get_apod():
+    """Retrieves and saves the APOD API"""
     apiurl = 'https://api.nasa.gov/planetary/apod?api_key=' + api_config.nasaapikey
     apoddata = requests.get(apiurl).json()
+    print(apoddata)
+    # Saves the URL for the HD version of the APOD
     imgurl = apoddata['hdurl']
+    # Saves the APOD
     urllib.request.urlretrieve(imgurl, 'apod.jpg')
-    image = Image.open('apod.jpg')
-    image.show()
+    if __name__ == '__main__':
+        image = Image.open('apod.jpg')
+        image.show()
     return apoddata
 
 if __name__ == '__main__':
