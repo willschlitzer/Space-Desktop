@@ -25,6 +25,7 @@ def get_sol():
     """Queries the API for the maximum sol of Curiosity photos"""
     api_url = 'https://mars-photos.herokuapp.com/api/v1/manifests/curiosity'
     manifest_data = requests.get(api_url).json()
+    # Determines the max sol from the .json data, passes to camera function
     camera(manifest_data, manifest_data['photo_manifest']['max_sol'])
 
 def camera(data,sol):
