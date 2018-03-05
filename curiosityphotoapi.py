@@ -10,12 +10,17 @@ from PIL import Image
 import api_config
 
 def curiosity_pic(cam, sol):
+    """Queries the API for the available photos, randomly selects and saves
+    a photo, and opens it."""
     api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
     curiositydata = requests.get(api_url).json()
     key_list = []
+    # Appends key_list with the links to the images returned by the API
     for key in curiositydata['photos']:
         key_list.append(key['img_src'])
+    # Randomly selects one of the photos returned
     url = key_list[random.randint(1,len(key_list)-1)]
+    # Saves the selected photo
     urllib.request.urlretrieve(url, 'curiositypic.jpg')
     if __name__ == '__main__':
         image = Image.open('curiositypic.jpg')
