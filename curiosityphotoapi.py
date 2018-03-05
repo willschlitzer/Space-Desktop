@@ -1,17 +1,15 @@
-'''Queries the NASA API for the photos
-from the Curiosity MASTCAM'''
+"""Queries the NASA API for the recent photos from Curiosity,
+prioritizing the MASTCAM"""
 
 import requests
 import random
-
 
 import urllib.request
 from PIL import Image
 
 import api_config
 
-def curiosity_pic(cam):
-    sol = '1500'
+def curiosity_pic(cam, sol):
     api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
     curiositydata = requests.get(api_url).json()
     key_list = []
@@ -24,25 +22,27 @@ def curiosity_pic(cam):
         image.show()
 
 def get_sol():
+    """Queries the API for the maximum sol of Curiosity photos"""
     api_url = 'https://mars-photos.herokuapp.com/api/v1/manifests/curiosity'
     manifest_data = requests.get(api_url).json()
     camera(manifest_data, manifest_data['photo_manifest']['max_sol'])
 
 def camera(data,sol):
-    print(sol)
-    for dict in data['photo_manifest']['photos']:
-        if dict['sol'] == sol:
-            print(dict)
-            cameras = dict['cameras']
+    for datadict in data['photo_manifest']['photos']:
+        if datadict['sol'] == sol:
+            print(sol)
+            print(datadict)
+            cameras = datadict['cameras']
+    sol = str(sol)
     if 'MAST' in cameras:
-        curiosity_pic('mast')
+        curiosity_pic('mast', sol)
     elif 'NAVCAM' in cameras:
-        curiosity_pic('navcam')
+        curiosity_pic('navcam', sol)
     elif 'CHEMCAM' in cameras:
-        curiosity_pic('chemcam')
+        curiosity_pic('chemcam', sol)
     else:
         cam = cameras[random.randint(0,len(cameras)-1)]
-        curiosity_pic(cam.lower)
+        curiosity_pic(cam.lower, sol)
     
 if __name__ == '__main__':
     get_sol()
