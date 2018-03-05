@@ -9,7 +9,7 @@ from PIL import Image
 
 import api_config
 
-def curiosity_pic(cam, sol):
+def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
     """Queries the API for the available photos, randomly selects and saves
     a photo, and opens it."""
     api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
@@ -21,9 +21,9 @@ def curiosity_pic(cam, sol):
     # Randomly selects one of the photos returned
     url = key_list[random.randint(1,len(key_list)-1)]
     # Saves the selected photo
-    urllib.request.urlretrieve(url, 'curiositypic.jpg')
+    urllib.request.urlretrieve(url, picname)
     if __name__ == '__main__':
-        image = Image.open('curiositypic.jpg')
+        image = Image.open(picname)
         image.show()
 
 def get_sol():
@@ -55,4 +55,3 @@ def camera(data,sol):
     
 if __name__ == '__main__':
     get_sol()
-
