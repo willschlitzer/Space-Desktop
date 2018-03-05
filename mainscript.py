@@ -7,11 +7,10 @@ import apodapi
 import astrosapi
 import curiosityphotoapi
 
-def image_plotter(picname, width = 500):
+def image_plotter(picname, width = 500, maxheight = 600):
     pilImage = Image.open(picname)
     height = image_ratio(pilImage, width)
     pilImage = pilImage.resize((height, width), Image.ANTIALIAS)
-    print(height, width)
     return ImageTk.PhotoImage(pilImage)
 
 def image_ratio(pilImage, width):
@@ -23,8 +22,8 @@ def image_ratio(pilImage, width):
     return (int(round(height,0)))
 
 root= tk.Tk()
-root.geometry('10000x10000')
-canvas = tk.Canvas(root, width=9999, height = 9999)
+root.geometry('1500x700')
+canvas = tk.Canvas(root, width=1499, height = 699)
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes') 
 apodimage = image_plotter('apod.jpg')
