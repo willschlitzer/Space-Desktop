@@ -29,18 +29,21 @@ def get_sol():
     camera(manifest_data, manifest_data['photo_manifest']['max_sol'])
 
 def camera(data,sol):
+    """Determines the cameras used for the photos on the max sol"""
     for datadict in data['photo_manifest']['photos']:
+        # Searches the data for the dictionary with the max sol
         if datadict['sol'] == sol:
-            print(sol)
-            print(datadict)
             cameras = datadict['cameras']
     sol = str(sol)
+    # Based upon the cameras returned for the max sol, passes their names to
+    # curiosity_pic, along with the max sol.
     if 'MAST' in cameras:
         curiosity_pic('mast', sol)
     elif 'NAVCAM' in cameras:
         curiosity_pic('navcam', sol)
     elif 'CHEMCAM' in cameras:
         curiosity_pic('chemcam', sol)
+    # Randomly selects a camera if there are no photos from the preferred cameras.
     else:
         cam = cameras[random.randint(0,len(cameras)-1)]
         curiosity_pic(cam.lower, sol)
