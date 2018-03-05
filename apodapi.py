@@ -8,6 +8,7 @@ from PIL import Image
 
 import api_config
 
+
 def get_apod():
     """Retrieves and saves the APOD API"""
     apiurl = 'https://api.nasa.gov/planetary/apod?api_key=' + api_config.nasaapikey
@@ -24,4 +25,3 @@ def get_apod():
 
 if __name__ == '__main__':
     get_apod()
-
