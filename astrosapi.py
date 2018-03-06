@@ -8,13 +8,9 @@ def astros():
     astros_data = requests.get(api_url).json()
     # Saves and prints the number of people in space
     astros_number = astros_data['number']
-    print(astros_number)
     astronauts = astros_data['people']
-    # Prints the header for the table of astronauts and spacecraft
-    print('Astronaut\t\tCraft')
-    # Prints the fields of astronauts and their spacecraft
-    for i in astronauts:
-        print(i['name'], '\t\t', i['craft'])
+    # Returns the number of people in space, and the dictionaries for the astronauts and their craft
+    return astros_number, astronauts
 
 if __name__ == '__main__':
     astros()

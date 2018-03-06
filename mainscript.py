@@ -11,6 +11,7 @@ import curiosityphotoapi
 
 apoddata = apodapi.get_apod()
 cam, sol = curiosityphotoapi.main()
+astros_number, astronauts = astrosapi()
 
 
 def image_plotter(picname, width = 500, maxheight =  600):
