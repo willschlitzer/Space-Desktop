@@ -20,7 +20,7 @@ def image_plotter(picname, width = 500, maxheight =  600):
     """Uses the image_ratio to determine the height and width of the photo, and resizes the image"""
     pil_image = Image.open(picname)
     height = image_ratio(pil_image, width)
-    pil_image = pil_image.resize((height, width), Image.ANTIALIAS)
+    pil_image = pil_image.resize((width, height), Image.ANTIALIAS)
     return ImageTk.PhotoImage(pil_image)
 
 
