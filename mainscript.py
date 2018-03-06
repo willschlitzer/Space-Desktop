@@ -56,11 +56,10 @@ y2 = y1 + 10
 cv.create_text(x1 + 5, y2 + 5, text='Name', anchor = 'nw')
 cv.create_text(x2 + 5, y2 + 5, text='Craft', anchor = 'nw')
 # Prints the names and spacecraft of the individuals in space
-for key in astronauts:
-    print(key)
+for astro in astronauts:
     y2 = y2 + 25
-    astroname = key['name']
-    astrocraft = key['craft']
+    astroname = astro['name']
+    astrocraft = astro['craft']
     cv.create_text(x1 + 5, y2, text=astroname, anchor = 'nw')
     cv.create_text(x2 + 5, y2, text=astrocraft, anchor = 'nw')
 

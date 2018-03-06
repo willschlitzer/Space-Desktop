@@ -14,7 +14,7 @@ def get_apod():
     apiurl = 'https://api.nasa.gov/planetary/apod?api_key=' + api_config.nasaapikey
     apoddata = requests.get(apiurl).json()
     # Saves the URL for the HD version of the APOD
-    imgurl = apoddata['url']
+    imgurl = apoddata['hdurl']
     # Saves the APOD
     urllib.request.urlretrieve(imgurl, 'apod.jpg')
     if __name__ == '__main__':
