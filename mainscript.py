@@ -15,12 +15,9 @@ cam, sol = curiosityphotoapi.main()
 astros_number, astronauts = astrosapi.astros()
 issdata = isslocation.iss_data()
 
-def create_table(instance, count, data, top_left_coord_x, top_left_coord_y, left_column_title = 'Name', right_column_title = 'Craft',):
-
-    print(data)
-    return cv
 
 def image_plotter(picname, width = 500, maxheight =  600):
+    """Uses the image_ratio to determine the height and width of the photo, and resizes the image"""
     pil_image = Image.open(picname)
     height = image_ratio(pil_image, width)
     pil_image = pil_image.resize((height, width), Image.ANTIALIAS)
@@ -28,6 +25,7 @@ def image_plotter(picname, width = 500, maxheight =  600):
 
 
 def image_ratio(pil_image, width):
+    """Determines the height and width ratio of the picture"""
     npimage = np.asarray(pil_image, dtype=np.uint8)
     img_h = npimage.shape[0]
     img_w = npimage.shape[1]
@@ -48,20 +46,22 @@ cv.create_image(20, 30, image = apodimage, anchor='nw')
 curiosityimage = image_plotter('curiositypic.jpg', width = 400)
 cv.create_text(850,15, text='Curiosity Photo')
 cv.create_image(650, 30, image= curiosityimage, anchor='nw')
-x1 = 740
+# Creates the reference points for the People in Space API data
+x1 = 650
 x2 = x1 + 150
 x3 = x2 + 60
-y1 = 500
-y2 = y1 + 5
+y1 = 450
+y2 = y1 + 10
+# Prints the header titles
 cv.create_text(x1 + 5, y2 + 5, text='Name', anchor = 'nw')
 cv.create_text(x2 + 5, y2 + 5, text='Craft', anchor = 'nw')
+# Prints the names and spacecraft of the individuals in space
 for key in astronauts:
     print(key)
-    y2 = y2 + 20
+    y2 = y2 + 25
     astroname = key['name']
     astrocraft = key['craft']
     cv.create_text(x1 + 5, y2, text=astroname, anchor = 'nw')
     cv.create_text(x2 + 5, y2, text=astrocraft, anchor = 'nw')
-    print(y2)
 
 root.mainloop()
