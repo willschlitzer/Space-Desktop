@@ -8,7 +8,7 @@ def iss_data():
     apiurl = 'http://api.open-notify.org/iss-now.json'
     issdata = requests.get(apiurl).json()
     # Prints the returned ISS data
-    print(issdata)
+    return issdata
 
 if __name__ == '__main__':
     iss_data()

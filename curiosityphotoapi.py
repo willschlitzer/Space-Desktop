@@ -62,6 +62,7 @@ def main():
     cam = camera(data, sol)
     sol = str(sol)
     curiosity_pic(cam, sol)
+    return cam, sol
 
 
 if __name__ == '__main__':
