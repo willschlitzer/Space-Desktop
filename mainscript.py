@@ -15,6 +15,9 @@ cam, sol = curiosityphotoapi.main()
 astros_number, astronauts = astrosapi.astros()
 issdata = isslocation.iss_data()
 
+def create_table(instance, count, data, left_column_title, right_column_title, top_left_coord_x, top_left_coord_y):
+    cv.create_text(top_left_coord_x, top_left_coord_y, text='Test')
+
 
 def image_plotter(picname, width = 500, maxheight =  600):
     pil_image = Image.open(picname)
@@ -44,7 +47,10 @@ apodimage = image_plotter('apod.jpg', width = 600)
 cv.create_text(200,15, text='Astronomy Picture of the Day')
 cv.create_image(20, 30, image = apodimage, anchor='nw')
 curiosityimage = image_plotter('curiositypic.jpg', width = 400)
-cv.create_text(750,15, text='Curiosity Photo')
+cv.create_text(850,15, text='Curiosity Photo')
 cv.create_image(650, 30, image= curiosityimage, anchor='nw')
+print('Table time')
+create_table(cv, astros_number, astronauts, 'Astronauts', 'Craft', 740, 500)
+
 
 root.mainloop()
