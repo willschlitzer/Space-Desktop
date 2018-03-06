@@ -15,15 +15,15 @@ cam, sol = curiosityphotoapi.main()
 astros_number, astronauts = astrosapi.astros()
 issdata = isslocation.iss_data()
 
-def create_table(instance, count, data, left_column_title, right_column_title, top_left_coord_x, top_left_coord_y):
-    cv.create_text(top_left_coord_x, top_left_coord_y, text='Test')
+def create_table(instance, count, data, top_left_coord_x, top_left_coord_y, left_column_title = 'Name', right_column_title = 'Craft',):
 
+    print(data)
+    return cv
 
 def image_plotter(picname, width = 500, maxheight =  600):
     pil_image = Image.open(picname)
     height = image_ratio(pil_image, width)
     pil_image = pil_image.resize((height, width), Image.ANTIALIAS)
-    #print(height, width)
     return ImageTk.PhotoImage(pil_image)
 
 
@@ -31,7 +31,6 @@ def image_ratio(pil_image, width):
     npimage = np.asarray(pil_image, dtype=np.uint8)
     img_h = npimage.shape[0]
     img_w = npimage.shape[1]
-    #print(img_h, img_w)
     height = (img_h/img_w) * width
     return int(round(height, 0))
 
@@ -49,8 +48,17 @@ cv.create_image(20, 30, image = apodimage, anchor='nw')
 curiosityimage = image_plotter('curiositypic.jpg', width = 400)
 cv.create_text(850,15, text='Curiosity Photo')
 cv.create_image(650, 30, image= curiosityimage, anchor='nw')
-print('Table time')
-create_table(cv, astros_number, astronauts, 'Astronauts', 'Craft', 740, 500)
-
+x1 = 740
+x2 = x1 + 100
+x3 = x2 + 60
+y1 = 500
+y2 = y1 + 5
+cv.create_text(x1 + 5, y2, text='Name'
+cv.create_text(x2 + 5, y2 + 5, text='Craft')
+for key in astronauts:
+    print(key)
+    y2 = + 10
+    cv.create_text(x1 + 5, y2, text=key['name'])
+    cv.create_text(x1 + 5, y2, text=key['craft'])
 
 root.mainloop()
