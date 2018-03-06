@@ -8,17 +8,19 @@ import numpy as np
 import apodapi
 import astrosapi
 import curiosityphotoapi
+import isslocation
 
 apoddata = apodapi.get_apod()
 cam, sol = curiosityphotoapi.main()
-astros_number, astronauts = astrosapi()
+astros_number, astronauts = astrosapi.astros()
+issdata = isslocation.iss_data()
 
 
 def image_plotter(picname, width = 500, maxheight =  600):
     pil_image = Image.open(picname)
     height = image_ratio(pil_image, width)
     pil_image = pil_image.resize((height, width), Image.ANTIALIAS)
-    print(height, width)
+    #print(height, width)
     return ImageTk.PhotoImage(pil_image)
 
 
@@ -26,7 +28,7 @@ def image_ratio(pil_image, width):
     npimage = np.asarray(pil_image, dtype=np.uint8)
     img_h = npimage.shape[0]
     img_w = npimage.shape[1]
-    print(img_h, img_w)
+    #print(img_h, img_w)
     height = (img_h/img_w) * width
     return int(round(height, 0))
 
@@ -41,7 +43,7 @@ cv.pack(side='top', fill='both', expand='yes')
 apodimage = image_plotter('apod.jpg', width = 600)
 cv.create_text(200,15, text='Astronomy Picture of the Day')
 cv.create_image(20, 30, image = apodimage, anchor='nw')
-curiosityimage = image_plotter('curiositypic.jpg', width = 200)
+curiosityimage = image_plotter('curiositypic.jpg', width = 400)
 cv.create_text(750,15, text='Curiosity Photo')
 cv.create_image(650, 30, image= curiosityimage, anchor='nw')
 
