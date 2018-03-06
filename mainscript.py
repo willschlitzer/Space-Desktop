@@ -49,18 +49,19 @@ curiosityimage = image_plotter('curiositypic.jpg', width = 400)
 cv.create_text(850,15, text='Curiosity Photo')
 cv.create_image(650, 30, image= curiosityimage, anchor='nw')
 x1 = 740
-x2 = x1 + 100
+x2 = x1 + 150
 x3 = x2 + 60
 y1 = 500
 y2 = y1 + 5
-cv.create_text(x1 + 5, y2 + 5, text='Name')
-cv.create_text(x2 + 5, y2 + 5, text='Craft')
+cv.create_text(x1 + 5, y2 + 5, text='Name', anchor = 'nw')
+cv.create_text(x2 + 5, y2 + 5, text='Craft', anchor = 'nw')
 for key in astronauts:
     print(key)
-    y2 = + 10
+    y2 = y2 + 20
     astroname = key['name']
     astrocraft = key['craft']
-    cv.create_text(x1 + 5, y2, text=astroname)
-    cv.create_text(x1 + 5, y2, text=astrocraft)
+    cv.create_text(x1 + 5, y2, text=astroname, anchor = 'nw')
+    cv.create_text(x2 + 5, y2, text=astrocraft, anchor = 'nw')
+    print(y2)
 
 root.mainloop()
