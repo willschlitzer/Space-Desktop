@@ -53,12 +53,14 @@ x2 = x1 + 100
 x3 = x2 + 60
 y1 = 500
 y2 = y1 + 5
-cv.create_text(x1 + 5, y2, text='Name'
+cv.create_text(x1 + 5, y2 + 5, text='Name')
 cv.create_text(x2 + 5, y2 + 5, text='Craft')
 for key in astronauts:
     print(key)
     y2 = + 10
-    cv.create_text(x1 + 5, y2, text=key['name'])
-    cv.create_text(x1 + 5, y2, text=key['craft'])
+    astroname = key['name']
+    astrocraft = key['craft']
+    cv.create_text(x1 + 5, y2, text=astroname)
+    cv.create_text(x1 + 5, y2, text=astrocraft)
 
 root.mainloop()
