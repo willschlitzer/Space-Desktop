@@ -10,6 +10,9 @@ import apodapi
 import astrosapi
 import curiosityphotoapi
 
+apodapi.get_apod()
+curiosityphotoapi.main()
+
 
 def image_plotter(picname, width = 500, maxheight = 600):
     pil_image = Image.open(picname)

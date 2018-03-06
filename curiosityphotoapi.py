@@ -9,6 +9,7 @@ from PIL import Image
 
 import api_config
 
+
 def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
     """Queries the API for the available photos, randomly selects and saves
     a photo, and opens it."""
@@ -26,14 +27,16 @@ def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
         image = Image.open(picname)
         image.show()
 
+
 def get_sol():
     """Queries the API for the maximum sol of Curiosity photos"""
     api_url = 'https://mars-photos.herokuapp.com/api/v1/manifests/curiosity'
     manifest_data = requests.get(api_url).json()
     # Determines the max sol from the .json data, passes to camera function
-    camera(manifest_data, manifest_data['photo_manifest']['max_sol'])
+    return manifest_data, manifest_data['photo_manifest']['max_sol']
 
-def camera(data,sol):
+
+def camera(data, sol):
     """Determines the cameras used for the photos on the max sol"""
     for datadict in data['photo_manifest']['photos']:
         # Searches the data for the dictionary with the max sol
@@ -43,15 +46,23 @@ def camera(data,sol):
     # Based upon the cameras returned for the max sol, passes their names to
     # curiosity_pic, along with the max sol.
     if 'MAST' in cameras:
-        curiosity_pic('mast', sol)
+        return 'mast'
     elif 'NAVCAM' in cameras:
-        curiosity_pic('navcam', sol)
+        return 'mast'
     elif 'CHEMCAM' in cameras:
-        curiosity_pic('chemcam', sol)
+        return 'chemcam;'
     # Randomly selects a camera if there are no photos from the preferred cameras.
     else:
         cam = cameras[random.randint(0,len(cameras)-1)]
-        curiosity_pic(cam.lower, sol)
-    
+        return cam.lower()
+
+
+def main():
+    data, sol = get_sol()
+    cam = camera(data, sol)
+    sol = str(sol)
+    curiosity_pic(cam, sol)
+
+
 if __name__ == '__main__':
-    get_sol()
+    main()
