@@ -49,6 +49,12 @@ def camera(data, sol):
         return 'mast'
     elif 'NAVCAM' in cameras:
         return 'mast'
+    elif 'FHAZ' in cameras:
+        return 'fhaz'
+    elif 'RHAZ' in cameras:
+        return 'rhaz'
+    elif 'MAHLI' in cameras:
+        return 'mahli'
     elif 'CHEMCAM' in cameras:
         return 'chemcam;'
     # Randomly selects a camera if there are no photos from the preferred cameras.
