@@ -9,6 +9,7 @@ import apodapi
 import astrosapi
 import curiosityphotoapi
 import isslocation
+import spacexlaunch
 
 apoddata = apodapi.get_apod()
 cam, sol = curiosityphotoapi.main()
@@ -40,12 +41,17 @@ root.geometry('1500x700')
 canvas = tk.Canvas(root, width= 1499, height= 699)
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
+
+# Creates the heading and image for the APOD
 apodimage = image_plotter('apod.jpg', width = 600)
 cv.create_text(225,15, text='Astronomy Picture of the Day', anchor='nw')
 cv.create_image(20, 35, image = apodimage, anchor='nw')
+
+# Creates the heading an image for a Curiosity photo
 curiosityimage = image_plotter('curiositypic.jpg', width = 400)
 cv.create_text(800,15, text='Curiosity Photo', anchor = 'nw')
 cv.create_image(650, 35, image= curiosityimage, anchor='nw')
+
 # Creates the reference points for the People in Space API data
 x1 = 650
 x2 = x1 + 150
@@ -71,5 +77,7 @@ cv.create_text(1100, 15, text='ISS Location', anchor='nw')
 cv.create_text(1100, 30, text='Date: ' + str(date_time), anchor='nw')
 cv.create_text(1100, 45, text='Latitude: ' + str(iss_lat), anchor='nw')
 cv.create_text(1100, 60, text='Longitude: ' + str(iss_long), anchor='nw')
+
+
 
 root.mainloop()
