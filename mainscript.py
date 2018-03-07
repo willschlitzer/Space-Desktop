@@ -66,6 +66,7 @@ for astro in astronauts:
 # The ISS location data and the current time of the request
 issdata, date_time = isslocation.iss_data()
 iss_lat, iss_long = issdata['iss_position']['latitude'], issdata['iss_position']['longitude']
+# Displays the ISS location and date and time
 cv.create_text(1100, 15, text='ISS Location', anchor='nw')
 cv.create_text(1100, 30, text='Date: ' + str(date_time), anchor='nw')
 cv.create_text(1100, 45, text='Latitude: ' + str(iss_lat), anchor='nw')

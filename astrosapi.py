@@ -1,4 +1,4 @@
-'''Queries the People in Space API for the current people in space'''
+"""Queries the People in Space API for the current people in space"""
 
 import requests
 

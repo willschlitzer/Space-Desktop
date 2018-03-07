@@ -1,5 +1,4 @@
-"""Queries the NASA API for the recent photos from Curiosity,
-prioritizing the MASTCAM"""
+"""Queries the NASA API for the recent photos from Curiosity"""
 
 import requests
 import random
