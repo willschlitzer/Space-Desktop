@@ -41,9 +41,7 @@ def camera(data, sol):
         # Searches the data for the dictionary with the max sol
         if datadict['sol'] == sol:
             cameras = datadict['cameras']
-    sol = str(sol)
-    # Based upon the cameras returned for the max sol, passes their names to
-    # curiosity_pic, along with the max sol.
+    # Based upon the cameras returned for the max sol, returns the camera name
     if 'MAST' in cameras:
         return 'mast'
     elif 'NAVCAM' in cameras:
