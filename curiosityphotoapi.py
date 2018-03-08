@@ -55,7 +55,7 @@ def camera(data, sol):
     elif 'MAHLI' in cameras:
         return 'mahli'
     elif 'CHEMCAM' in cameras:
-        return 'chemcam;'
+        return 'chemcam'
     # Randomly selects a camera if there are no photos from the preferred cameras.
     else:
         cam = cameras[random.randint(0,len(cameras)-1)]
