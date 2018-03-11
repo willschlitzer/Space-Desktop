@@ -10,7 +10,7 @@ import api_config
 
 
 def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
-    """Queries the API for the available photos, randomly selects and saves a photo, and opens it."""
+    """Queries the API for photos, selects, saves, and opens a photo."""
     api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
     curiositydata = requests.get(api_url).json()
     key_list = []
