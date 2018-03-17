@@ -12,12 +12,16 @@ import isslocation
 import spacexlaunch
 
 apoddata = apodapi.get_apod()
+print('Getting APOD')
 cam, sol = curiosityphotoapi.main()
+print('Getting Curiosity photo')
 astros_number, astronauts = astrosapi.astros()
+print('Getting the people in space')
 issdata = isslocation.iss_data()
+print('Getting the ISS data')
 
 
-def image_plotter(picname, width = 500, maxheight =  600):
+def image_plotter(picname, width = 500):
     """Uses the image_ratio to determine the height and width of the photo, and resizes the image"""
     pil_image = Image.open(picname)
     height = image_ratio(pil_image, width)
@@ -47,7 +51,7 @@ apodimage = image_plotter('apod.jpg', width = 600)
 cv.create_text(225,15, text='Astronomy Picture of the Day', anchor='nw')
 cv.create_image(20, 35, image = apodimage, anchor='nw')
 
-# Creates the heading an image for a Curiosity photo
+# Creates the image heading for a Curiosity photo
 curiosityimage = image_plotter('curiositypic.jpg', width = 400)
 cv.create_text(800,15, text='Curiosity Photo', anchor = 'nw')
 cv.create_image(650, 35, image= curiosityimage, anchor='nw')

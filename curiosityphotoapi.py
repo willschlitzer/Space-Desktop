@@ -11,8 +11,14 @@ import api_config
 
 def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
     """Queries the API for photos, selects, saves, and opens a photo."""
-    api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
+    if cam == 'nocam':
+        api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=mast&api_key=' + api_config.nasaapikey
+    else:
+        api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
     curiositydata = requests.get(api_url).json()
+    if curiositydata['photos'] == []:
+        api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=mast&api_key=' + api_config.nasaapikey
+        curiositydata = requests.get(api_url).json()
     key_list = []
     # Appends key_list with the links to the images returned by the API
     for key in curiositydata['photos']:
@@ -55,8 +61,9 @@ def camera(data, sol):
         return 'chemcam'
     # Randomly selects a camera if there are no photos from the preferred cameras.
     else:
-        cam = cameras[random.randint(0,len(cameras)-1)]
-        return cam.lower()
+        #cam = cameras[random.randint(0,len(cameras)-1)]
+        #return cam.lower()
+        return 'nocam'
 
 
 def main():
