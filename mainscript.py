@@ -11,14 +11,15 @@ import curiosityphotoapi
 import isslocation
 import spacexlaunch
 
-apoddata = apodapi.get_apod()
 print('Getting APOD')
-cam, sol = curiosityphotoapi.main()
+apoddata = apodapi.get_apod()
 print('Getting Curiosity photo')
-astros_number, astronauts = astrosapi.astros()
+cam, sol = curiosityphotoapi.main()
 print('Getting the people in space')
-issdata = isslocation.iss_data()
+astros_number, astronauts = astrosapi.astros()
 print('Getting the ISS data')
+issdata = isslocation.iss_data()
+
 
 
 def image_plotter(picname, width = 500):
@@ -48,7 +49,7 @@ cv.pack(side='top', fill='both', expand='yes')
 
 # Creates the heading and image for the APOD
 apodimage = image_plotter('apod.jpg', width = 600)
-cv.create_text(225,15, text='Astronomy Picture of the Day', anchor='nw')
+cv.create_text(175,7, text='Astronomy Picture of the Day', font="Verdana 16 bold", anchor='nw')
 cv.create_image(20, 35, image = apodimage, anchor='nw')
 
 # Creates the image heading for a Curiosity photo
