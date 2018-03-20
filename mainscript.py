@@ -115,10 +115,12 @@ issx, issy = 1100, 15
 # Displays the ISS location and date and time
 cv.create_text(issx, issy, text='ISS Location', font="Verdana 16 bold", anchor='nw')
 issy += 25
+# List of data labels and the dictionary values for ISS data
 issdatatext = ['UTC Date: ' + str(issdata['date']),
                'UTC Time: ' + str(issdata['time']),
                'Latitude: ' + str(issdata['lat']),
                'Longitude: ' + str(issdata['long'])]
+# Displays the ISS data in the issdatatext list
 for text in issdatatext:
     cv.create_text(issx, issy, text=text, font="Verdana 10", anchor='nw')
     issy += 15
