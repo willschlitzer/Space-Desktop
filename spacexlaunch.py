@@ -19,10 +19,15 @@ def next_launch():
     payloads = []
     for payload in launch['rocket']['second_stage']['payloads']:
         payloads.append(payload['payload_id'])
-    rocket_name = launch['rocket']['rocket_name']
+    rocket_type = launch['rocket']['rocket_name']
     # The number of times the first stage booster has flown
     first_stage_flight_num = launch['rocket']['first_stage']['cores'][0]['flight']
-    return launch_date_utc, launch_time_utc, launch_site, payloads, rocket_name, first_stage_flight_num
+    return {'date': launch_date_utc,
+            'time': launch_time_utc,
+            'site': launch_site,
+            'payloads': payloads,
+            'rocket_type': rocket_type,
+            'first_stage_flight_num': first_stage_flight_num}
 
 
 if __name__ == '__main__':
