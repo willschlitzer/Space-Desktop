@@ -39,11 +39,8 @@ def image_ratio(pil_image, width):
 def text_display(string, line_length=45):
     """Takes a string and returns a list of substrings"""
     line_list = []
-    #iterations = int(round(len(string)/line_length, 0))
-    #print(iterations)
     print(len(string))
     while len(string) > line_length:
-        print(string)
         string_index = line_length - 5
         space_checker = True
         while space_checker == True:
@@ -54,7 +51,6 @@ def text_display(string, line_length=45):
                 space_checker = False
             else:
                 string_index += 1
-        print(line_list)
     line_list.append(string)
     return line_list
 
