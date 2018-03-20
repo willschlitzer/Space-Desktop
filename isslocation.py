@@ -10,7 +10,7 @@ def iss_data():
     # Prints the returned ISS data
     utcnow = str(datetime.datetime.utcnow())
     return {'lat': round(float(issdata['iss_position']['latitude']),2),
-            'long': round(float(issdata['iss_position']['latitude']),2),
+            'long': round(float(issdata['iss_position']['longitude']),2),
             'date': utcnow[:10],
             'time': utcnow[11:19]}
 
