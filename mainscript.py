@@ -23,10 +23,14 @@ print('Getting SpaceX data')
 spacexdata = spacexlaunch.next_launch()
 
 
-def image_plotter(picname, width = 500):
+def image_plotter(picname, width = 500, max_height = 500):
     """Uses the height/width ratio to resize the image"""
     pil_image = Image.open(picname)
     height = image_ratio(pil_image, width)
+    if height > max_height:
+        divider = float(height/max_height)
+        width = int(width/divider)
+        height = int(height/divider)
     pil_image = pil_image.resize((width, height), Image.ANTIALIAS)
     return ImageTk.PhotoImage(pil_image), width, height
 
@@ -61,6 +65,7 @@ def text_display(string, line_length=45):
     return line_list
 
 root = tk.Tk()
+root.wm_title("Space Desktop")
 
 
 root.geometry('1500x700')
@@ -85,6 +90,7 @@ for line in lines:
     cv.create_text(apodx, apodexplanationy,
                    text=line, font = "Verdana 8", anchor='nw')
     apodexplanationy += 11
+
 # Creates the image heading for a Curiosity photo
 curiosityimage, curiositywidth, curiosityheight = \
     image_plotter('curiositypic.jpg', width = 400)
@@ -94,10 +100,12 @@ cv.create_text((2*curiosityx+curiositywidth)/2,curiosityy-15,
                text='Curiosity Photo', font = "Verdana 16 bold")
 cv.create_image(curiosityx, curiosityy,
                 image= curiosityimage, anchor='nw')
+cv.create_text((2*curiosityx+curiositywidth)/2, curiosityy + curiosityheight + 15,
+                  text = 'Camera: ' + cam + ' Sol: ' + sol, font="Verdana 8")
 
 # Creates the reference points for the People in Space API data
 astrosx = curiosityx
-astrosy = curiosityy + curiosityheight + 25
+astrosy = curiosityy + curiosityheight + 35
 # Prints the People in Space header titles
 cv.create_text(astrosx, astrosy, text='Name',
                font = "Verdana 12 bold", anchor ='nw')
