@@ -1,7 +1,7 @@
 # Space-Desktop
 A collection of scripts to call different space-related APIs and display the results. 
 
-`Current Features`<br><br>
+**Current Features**<br><br>
 **Astonomy Picture of the Day**<br>
 https://api.nasa.gov/planetary/apod<br>
 Retrieves the Astronomy Picture of the Day, and saves it as *apod.jpg*
@@ -18,7 +18,7 @@ Displays the names and spacecraft of individuals currently in space.
 **ISS Location**<br>http://api.open-notify.org/iss-now.json<br>
 Displays the current location of the International Space Station. 
 
-<br>`Future Features`<br>
+**Future Features**<br><br>
 **SpaceX Launch**<br>
 https://api.spacexdata.com/v2/launches/upcoming<br>
 Displays the date and information about the upcoming SpaceX launch.
