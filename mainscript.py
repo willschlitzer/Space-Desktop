@@ -20,8 +20,6 @@ astros_number, astronauts = astrosapi.astros()
 print('Getting the ISS data')
 issdata = isslocation.iss_data()
 
-
-
 def image_plotter(picname, width = 500):
     """Uses the image_ratio to determine the height and width of the photo, and resizes the image"""
     pil_image = Image.open(picname)
@@ -38,6 +36,27 @@ def image_ratio(pil_image, width):
     height = (img_h/img_w) * width
     return int(round(height, 0))
 
+def text_display(string, line_length=45):
+    """Takes a string and returns a list of substrings"""
+    line_list = []
+    #iterations = int(round(len(string)/line_length, 0))
+    #print(iterations)
+    print(len(string))
+    while len(string) > line_length:
+        print(string)
+        string_index = line_length - 5
+        space_checker = True
+        while space_checker == True:
+            if string[string_index] == ' ':
+                line_string = string[:string_index]
+                line_list.append(line_string)
+                string = string[string_index+1:]
+                space_checker = False
+            else:
+                string_index += 1
+        print(line_list)
+    line_list.append(string)
+    return line_list
 
 root = tk.Tk()
 
