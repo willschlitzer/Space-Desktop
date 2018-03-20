@@ -20,6 +20,7 @@ astros_number, astronauts = astrosapi.astros()
 print('Getting the ISS data')
 issdata = isslocation.iss_data()
 
+
 def image_plotter(picname, width = 500):
     """Uses the height/width ratio to resize the image"""
     pil_image = Image.open(picname)
@@ -67,7 +68,7 @@ cv.pack(side='top', fill='both', expand='yes')
 
 
 apodimage, apodwidth, apodheight = \
-    image_plotter('apod.jpg', width = 500)
+    image_plotter('apod.jpg', width= 500)
 # The top left corner coordinates of the APOD picture
 apodx, apody = 20, 35
 # Creates the heading and image for the APOD
@@ -119,7 +120,6 @@ cv.create_text(1100, 45,
                text='Latitude: ' + str(iss_lat), anchor='nw')
 cv.create_text(1100, 60,
                text='Longitude: ' + str(iss_long), anchor='nw')
-
 
 
 root.mainloop()
