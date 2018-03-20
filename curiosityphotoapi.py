@@ -13,12 +13,16 @@ def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
     """Queries the API for photos, selects, saves, and opens a photo."""
     if cam == 'nocam':
         api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=mast&api_key=' + api_config.nasaapikey
+        cam = 'mast'
+        sol = '1500'
     else:
         api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol='+ sol + '&camera=' + cam + '&api_key=' + api_config.nasaapikey
     curiositydata = requests.get(api_url).json()
     if curiositydata['photos'] == []:
         api_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=mast&api_key=' + api_config.nasaapikey
         curiositydata = requests.get(api_url).json()
+        cam = 'mast'
+        sol = '1500'
     key_list = []
     # Appends key_list with the links to the images returned by the API
     for key in curiositydata['photos']:
@@ -30,6 +34,7 @@ def curiosity_pic(cam, sol, picname = 'curiositypic.jpg'):
     if __name__ == '__main__':
         image = Image.open(picname)
         image.show()
+    return str.upper(cam), sol
 
 
 def get_sol():
@@ -70,7 +75,7 @@ def main():
     data, sol = get_sol()
     cam = camera(data, sol)
     sol = str(sol)
-    curiosity_pic(cam, sol)
+    cam, sol = curiosity_pic(cam, sol)
     return cam, sol
 
 
