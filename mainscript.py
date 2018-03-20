@@ -19,6 +19,8 @@ print('Getting the people in space')
 astros_number, astronauts = astrosapi.astros()
 print('Getting the ISS data')
 issdata = isslocation.iss_data()
+#print('Getting SpaceX data')
+#spacexdata = spacexlaunch.next_launch()
 
 
 def image_plotter(picname, width = 500):
@@ -105,21 +107,21 @@ cv.create_text(astrosx + 150, astrosy, text='Craft',
 astrosy += 25
 # Prints the names and spacecraft of the individuals in space
 for astro in astronauts:
-    cv.create_text(astrosx, astrosy, text=astro['name'], anchor ='nw')
-    cv.create_text(astrosx + 150, astrosy, text=astro['craft'], anchor ='nw')
+    cv.create_text(astrosx, astrosy, text=astro['name'], font="Verdana 10", anchor ='nw')
+    cv.create_text(astrosx + 150, astrosy, text=astro['craft'], font="Verdana 10", anchor ='nw')
     astrosy += 15
 # The ISS location data and the current time of the request
-issdata, date_time = isslocation.iss_data()
-iss_lat, iss_long = issdata['iss_position']['latitude'],\
-                    issdata['iss_position']['longitude']
+issx, issy = 1100, 15
 # Displays the ISS location and date and time
-cv.create_text(1100, 15, text='ISS Location', anchor='nw')
-cv.create_text(1100, 30,
-               text='Date: ' + str(date_time), anchor='nw')
-cv.create_text(1100, 45,
-               text='Latitude: ' + str(iss_lat), anchor='nw')
-cv.create_text(1100, 60,
-               text='Longitude: ' + str(iss_long), anchor='nw')
+cv.create_text(issx, issy, text='ISS Location', font="Verdana 16 bold", anchor='nw')
+issy += 25
+issdatatext = ['UTC Date: ' + str(issdata['date']),
+               'UTC Time: ' + str(issdata['time']),
+               'Latitude: ' + str(issdata['lat']),
+               'Longitude: ' + str(issdata['long'])]
+for text in issdatatext:
+    cv.create_text(issx, issy, text=text, font="Verdana 10", anchor='nw')
+    issy += 15
 
 
 root.mainloop()
