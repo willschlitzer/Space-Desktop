@@ -19,8 +19,8 @@ print('Getting the people in space')
 astros_number, astronauts = astrosapi.astros()
 print('Getting the ISS data')
 issdata = isslocation.iss_data()
-#print('Getting SpaceX data')
-#spacexdata = spacexlaunch.next_launch()
+print('Getting SpaceX data')
+spacexdata = spacexlaunch.next_launch()
 
 
 def image_plotter(picname, width = 500):
@@ -110,9 +110,8 @@ for astro in astronauts:
     cv.create_text(astrosx, astrosy, text=astro['name'], font="Verdana 10", anchor ='nw')
     cv.create_text(astrosx + 150, astrosy, text=astro['craft'], font="Verdana 10", anchor ='nw')
     astrosy += 15
-# The ISS location data and the current time of the request
+# The location of the ISS header
 issx, issy = 1100, 15
-# Displays the ISS location and date and time
 cv.create_text(issx, issy, text='ISS Location', font="Verdana 16 bold", anchor='nw')
 issy += 25
 # List of data labels and the dictionary values for ISS data
@@ -124,6 +123,28 @@ issdatatext = ['UTC Date: ' + str(issdata['date']),
 for text in issdatatext:
     cv.create_text(issx, issy, text=text, font="Verdana 10", anchor='nw')
     issy += 15
+
+# The SpaceX header location
+spacexx, spacexy = issx, issy+35
+# Displays the ISS location and date and time
+cv.create_text(spacexx, spacexy, text='Next SpaceX Launch', font="Verdana 16 bold", anchor='nw')
+spacexy += 25
+# List of data labels and the dictionary values for SpaceX data
+spacexdatatext = [['Date', spacexdata['date']],
+                  ['Time', spacexdata['time']],
+                  ['Site', spacexdata['site']],
+                  ['Type', spacexdata['rocket_type']]]
+# Displays the ISS data in the issdatatext list
+for text in spacexdatatext:
+    cv.create_text(spacexx, spacexy, text=text[0], font="Verdana 12", anchor='nw')
+    spacexy += 20
+    cv.create_text(spacexx, spacexy, text=text[1], font="Verdana 10", anchor='nw')
+    spacexy += 15
+cv.create_text(spacexx, spacexy, text='Payload(s)', font="Verdana 12", anchor='nw')
+spacexy += 20
+for payload in spacexdata['payloads']:
+    cv.create_text(spacexx, spacexy, text=payload, font="Verdana 10", anchor='nw')
+    spacexy += 15
 
 
 root.mainloop()
