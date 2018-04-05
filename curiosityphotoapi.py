@@ -55,7 +55,7 @@ def camera(data, sol):
     if 'MAST' in cameras:
         return 'mast'
     elif 'NAVCAM' in cameras:
-        return 'mast'
+        return 'navcam'
     elif 'FHAZ' in cameras:
         return 'fhaz'
     elif 'RHAZ' in cameras:
