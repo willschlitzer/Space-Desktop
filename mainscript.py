@@ -1,5 +1,5 @@
-"""Runs the apodapi.py, curiositypic.py, astrosapi.py, and isslocation.py
-scripts.  Builds the GUI for the saved photos and information."""
+"""Runs the apodapi.py, curiositypic.py, astrosapi.py, isslocation.py, and
+spacexlaunch.py scripts.  Builds the GUI for the saved photos and information."""
 
 import tkinter as tk
 from PIL import Image, ImageTk
