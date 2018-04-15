@@ -6,10 +6,10 @@ import requests
 
 def next_launch():
     """Queries the r/spacex API and returns launch info"""
-    apiurl = 'https://api.spacexdata.com/v2/launches/upcoming'
-    spacexdata = requests.get(apiurl).json()
-    # The first entry in spacexdata is the next upcoming launch
-    launch = spacexdata[0]
+    api_url = 'https://api.spacexdata.com/v2/launches/upcoming'
+    spacex_data = requests.get(api_url).json()
+    # The first entry in spacex_data is the next upcoming launch
+    launch = spacex_data[0]
     launch_date_time_utc = launch['launch_date_utc']
     # Slices the date and time as two separate strings
     launch_date_utc = launch_date_time_utc[0:10]

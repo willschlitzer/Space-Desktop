@@ -11,16 +11,16 @@ import api_config
 
 def get_apod():
     """Retrieves and saves the APOD API"""
-    apiurl = 'https://api.nasa.gov/planetary/apod?api_key=' + api_config.nasaapikey
-    apoddata = requests.get(apiurl).json()
+    api_url = 'https://api.nasa.gov/planetary/apod?api_key=' + api_config.nasaapikey
+    apod_data = requests.get(api_url).json()
     # Saves the URL for the HD version of the APOD
-    imgurl = apoddata['hdurl']
+    img_url = apod_data['hdurl']
     # Saves the APOD
-    urllib.request.urlretrieve(imgurl, 'apod.jpg')
+    urllib.request.urlretrieve(img_url, 'apod.jpg')
     if __name__ == '__main__':
         image = Image.open('apod.jpg')
         image.show()
-    return apoddata
+    return apod_data
 
 if __name__ == '__main__':
     get_apod()

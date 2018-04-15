@@ -5,14 +5,14 @@ import datetime
 
 def iss_data():
     """Queries the API"""
-    apiurl = 'http://api.open-notify.org/iss-now.json'
-    issdata = requests.get(apiurl).json()
+    api_url = 'http://api.open-notify.org/iss-now.json'
+    iss_data = requests.get(api_url).json()
     # Prints the returned ISS data
-    utcnow = str(datetime.datetime.utcnow())
-    return {'lat': round(float(issdata['iss_position']['latitude']),2),
-            'long': round(float(issdata['iss_position']['longitude']),2),
-            'date': utcnow[:10],
-            'time': utcnow[11:19]}
+    utc_now = str(datetime.datetime.utcnow())
+    return {'lat': round(float(iss_data['iss_position']['latitude']),2),
+            'long': round(float(iss_data['iss_position']['longitude']),2),
+            'date': utc_now[:10],
+            'time': utc_now[11:19]}
 
 if __name__ == '__main__':
     print(iss_data())
