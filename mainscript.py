@@ -18,9 +18,9 @@ cam, sol = curiosityphotoapi.main()
 print('Getting the people in space')
 astros_number, astronauts = astrosapi.astros()
 print('Getting the ISS data')
-issdata = isslocation.iss_data()
+iss_data = isslocation.iss_data()
 print('Getting SpaceX data')
-spacexdata = spacexlaunch.next_launch()
+spacex_data = spacexlaunch.next_launch()
 
 
 def image_plotter(picname, width = 500, max_height = 500):
@@ -74,85 +74,88 @@ cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
 
 
-apodimage, apodwidth, apodheight = \
-    image_plotter('apod.jpg', width= 500)
+apod_image, apod_width, apod_height = \
+    image_plotter('apod.jpg', width= 600)
 # The top left corner coordinates of the APOD picture
-apodx, apody = 20, 35
+apod_x, apod_y = 20, 35
 # Creates the heading and image for the APOD
-cv.create_text((2*apodx+apodwidth)/2,apody-15,
+cv.create_text((2 * apod_x + apod_width) / 2, apod_y - 15,
                text='Astronomy Picture of the Day', font="Verdana 16 bold")
-cv.create_image(apodx, apody, image = apodimage, anchor='nw')
+cv.create_image(apod_x, apod_y, image = apod_image, anchor='nw')
 # The y position of the first line of the APOD explanation
-apodexplanationy = apody + apodheight + 12
+apod_caption_y = apod_y + apod_height + 12
 # Creates a list of substrings from the APOD explanation
 lines = text_display(apoddata['explanation'], line_length = 90)
+# Displays each individual line in lines list
 for line in lines:
-    cv.create_text(apodx, apodexplanationy,
+    cv.create_text(apod_x, apod_caption_y,
                    text=line, font = "Verdana 8", anchor='nw')
-    apodexplanationy += 11
+    # Adjusts y location of subsequent lines
+    apod_caption_y += 11
 
 # Creates the image heading for a Curiosity photo
-curiosityimage, curiositywidth, curiosityheight = \
+curiosity_image, curiosity_width, curiosity_height = \
     image_plotter('curiositypic.jpg', width = 400)
 # Creates the reference points for the top left corner of the Curiosity image
-curiosityx, curiosityy = 650, 35
-cv.create_text((2*curiosityx+curiositywidth)/2,curiosityy-15,
+curiosity_x, curiosity_y = 650, 35
+cv.create_text((2 * curiosity_x + curiosity_width) / 2, curiosity_y - 15,
                text='Curiosity Photo', font = "Verdana 16 bold")
-cv.create_image(curiosityx, curiosityy,
-                image= curiosityimage, anchor='nw')
-cv.create_text((2*curiosityx+curiositywidth)/2, curiosityy + curiosityheight + 15,
-                  text = 'Camera: ' + cam + ' Sol: ' + sol, font="Verdana 8")
+cv.create_image(curiosity_x, curiosity_y,
+                image= curiosity_image, anchor='nw')
+cv.create_text((2 * curiosity_x + curiosity_width) / 2, curiosity_y + curiosity_height + 15,
+               text = 'Camera: ' + cam + ' Sol: ' + sol, font="Verdana 8")
 
 # Creates the reference points for the People in Space API data
-astrosx = curiosityx
-astrosy = curiosityy + curiosityheight + 35
+astros_x = curiosity_x
+astros_y = curiosity_y + curiosity_height + 35
 # Prints the People in Space header titles
-cv.create_text(astrosx, astrosy, text='Name',
+cv.create_text(astros_x, astros_y, text='Name',
                font = "Verdana 12 bold", anchor ='nw')
-cv.create_text(astrosx + 150, astrosy, text='Craft',
+cv.create_text(astros_x + 150, astros_y, text='Craft',
                font = "Verdana 12 bold", anchor ='nw')
 # Creates a space between the header and the listings
-astrosy += 25
+astros_y += 25
 # Prints the names and spacecraft of the individuals in space
 for astro in astronauts:
-    cv.create_text(astrosx, astrosy, text=astro['name'], font="Verdana 10", anchor ='nw')
-    cv.create_text(astrosx + 150, astrosy, text=astro['craft'], font="Verdana 10", anchor ='nw')
-    astrosy += 15
+    cv.create_text(astros_x, astros_y, text=astro['name'], font="Verdana 10", anchor ='nw')
+    cv.create_text(astros_x + 150, astros_y, text=astro['craft'], font="Verdana 10", anchor ='nw')
+    astros_y += 15
 # The location of the ISS header
-issx, issy = 1100, 15
-cv.create_text(issx, issy, text='ISS Location', font="Verdana 16 bold", anchor='nw')
-issy += 25
+iss_x, iss_y = 1100, 15
+cv.create_text(iss_x, iss_y, text='ISS Location', font="Verdana 16 bold", anchor='nw')
+iss_y += 25
 # List of data labels and the dictionary values for ISS data
-issdatatext = ['UTC Date: ' + str(issdata['date']),
-               'UTC Time: ' + str(issdata['time']),
-               'Latitude: ' + str(issdata['lat']),
-               'Longitude: ' + str(issdata['long'])]
+iss_data_text = ['UTC Date: ' + str(iss_data['date']),
+               'UTC Time: ' + str(iss_data['time']),
+               'Latitude: ' + str(iss_data['lat']),
+               'Longitude: ' + str(iss_data['long'])]
 # Displays the ISS data in the issdatatext list
-for text in issdatatext:
-    cv.create_text(issx, issy, text=text, font="Verdana 10", anchor='nw')
-    issy += 15
+for text in iss_data_text:
+    cv.create_text(iss_x, iss_y, text=text, font="Verdana 10", anchor='nw')
+    iss_y += 15
 
 # The SpaceX header location
-spacexx, spacexy = issx, issy+35
+spacex_x, spacex_y = iss_x, iss_y + 35
 # Displays the ISS location and date and time
-cv.create_text(spacexx, spacexy, text='Next SpaceX Launch', font="Verdana 16 bold", anchor='nw')
-spacexy += 25
+cv.create_text(spacex_x, spacex_y, text='Next SpaceX Launch', font="Verdana 16 bold", anchor='nw')
+spacex_y += 25
 # List of data labels and the dictionary values for SpaceX data
-spacexdatatext = [['Date', spacexdata['date']],
-                  ['Time', spacexdata['time']],
-                  ['Site', spacexdata['site']],
-                  ['Type', spacexdata['rocket_type']]]
-# Displays the ISS data in the issdatatext list
-for text in spacexdatatext:
-    cv.create_text(spacexx, spacexy, text=text[0], font="Verdana 12", anchor='nw')
-    spacexy += 20
-    cv.create_text(spacexx, spacexy, text=text[1], font="Verdana 10", anchor='nw')
-    spacexy += 15
-cv.create_text(spacexx, spacexy, text='Payload(s)', font="Verdana 12", anchor='nw')
-spacexy += 20
-for payload in spacexdata['payloads']:
-    cv.create_text(spacexx, spacexy, text=payload, font="Verdana 10", anchor='nw')
-    spacexy += 15
+spacex_data_text = [['Date', spacex_data['date']],
+                    ['Time', spacex_data['time']],
+                    ['Site', spacex_data['site']],
+                    ['Type', spacex_data['rocket_type']]]
+# Displays the ISS data in the iss_data_text list
+for text in spacex_data_text:
+    cv.create_text(spacex_x, spacex_y, text=text[0], font="Verdana 12", anchor='nw')
+    spacex_y += 20
+    cv.create_text(spacex_x, spacex_y, text=text[1], font="Verdana 10", anchor='nw')
+    spacex_y += 15
+# Displays payloads separately in case of multiple payloads
+cv.create_text(spacex_x, spacex_y, text='Payload(s)', font="Verdana 12", anchor='nw')
+spacex_y += 20
+for payload in spacex_data['payloads']:
+    cv.create_text(spacex_x, spacex_y, text=payload, font="Verdana 10", anchor='nw')
+    spacex_y += 15
 
 
 root.mainloop()
