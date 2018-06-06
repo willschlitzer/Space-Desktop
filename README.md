@@ -5,7 +5,7 @@ A collection of scripts to call different space-related APIs and display the res
 https://api.nasa.gov/planetary/apod<br>
 Retrieves the Astronomy Picture of the Day, and saves it as *apod.jpg*
 
-**Curiosity Rover**
+**Curiosity Rover**<br>
 https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos<br>
 Retrieves a recent photo from the Curiosity Rover's MASTCAM, 
 FHAZCAM, or RHAZCAM. If one is not available, it retrieves a 
